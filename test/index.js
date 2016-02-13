@@ -1,4 +1,4 @@
-var Server = require('../api/Server/Server');
+var Server = require('../api/server/Server');
 
 var _server = new Server({
 	server:{
