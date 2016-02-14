@@ -1,4 +1,6 @@
+var struct = require('../util/Struct');
 var HttpActionBase = require('./HttpActionBase');
+
 
 module.exports = function(config ,selection, session, error){
 	HttpActionBase.call(this, config, selection);
@@ -35,7 +37,7 @@ module.exports = function(config ,selection, session, error){
 	}	
 	function formatError(){
 		if(error && (error.length > 0)){
-			var _returnValue = util.Lista(error).Scalar(function(item, parcial){
+			var _returnValue = struct.List(error).scalar(function(item, partial){
 				return item ? '<li>' + item + '</li>' : '';
 			});
 			_returnValue = 

@@ -1,3 +1,4 @@
+var struct = require('../util/Struct');
 var HttpActionBase = require('./HttpActionBase');
 
 module.exports = function(config ,selection, session, kind, value){
