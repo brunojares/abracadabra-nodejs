@@ -1,7 +1,8 @@
 var fs = require('fs');
 
-function FileManager(path){
-	this.loadText = function(on_success, on_fail){
+/* ========== Text File ========== */
+function TextFileManager(path){
+	this.load = function(on_success, on_fail){
 		var _parameters ={ path: path };
 		fs.exists(path,function(fileExists){
 			_parameters.fileExists = fileExists;
@@ -22,7 +23,13 @@ function FileManager(path){
 			}
 		});		
 	}
-	this.loadStream = function(on_success, on_fail){
+}
+exports.Text = function(path){
+	return new TextFileManager(path);
+}
+/* ========== Stream File ========== */
+function StreamFileManager(path){
+	this.load = function(on_success, on_fail){
 		 var _parameters ={ path: path };
 		 fs.exists(path,function(fileExists){
 		 	 _parameters.fileExists = fileExists;
@@ -39,8 +46,8 @@ function FileManager(path){
 				on_fail(_parameters);
 			}
   		});
-	}
+	}	
 }
-exports.File = function(path){
-	return new FileManager(path);
+exports.Stream = function(path){
+	return new StreamFileManager(path);
 }
