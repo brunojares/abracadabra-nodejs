@@ -2,13 +2,14 @@ var Server = require('../api/server/Server');
 
 var _server = new Server({
 	server:{
-		debug: true,
+		debug: true		
 		//success: function(value){ }
 		//error: function(value){ }
 		//warning: function(value){ }
 		//info: function(value){ }
 	},
 	application: {
+		appPath: __dirname,
 		value: 123
 	}
 });
@@ -16,6 +17,7 @@ var _server = new Server({
 _server.http(function(application){
 	return {
 		port: 8080,
+		controllers: __dirname + '/server/controller',
 		started: function() { },
 		auntenticate: function(session){
 			if(session.request.isHome)
