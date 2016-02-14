@@ -30,8 +30,9 @@ _server.http(function(application){
 		},
 		routes: function(session){
 			return [
-				application.on(session.request.is('client')).directory('./client'),
-				application.on(session.request.is('person')).controller('PersonController')
+				application.on(session.request.isHome()).TextFile('Index.html')
+				//application.on(session.request.is('client')).directory('./client'),
+				//application.on(session.request.is('person')).controller('PersonController')
 			];
 		}
 	};

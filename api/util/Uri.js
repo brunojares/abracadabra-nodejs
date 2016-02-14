@@ -29,25 +29,47 @@ exports.Local = function(value){
 }
 
 /* ============ URL =============== */
-/*
-{ partes: 
-   { protocol: null,
-     slashes: null,
-     auth: null,
-     host: null,
-     port: null,
-     hostname: null,
-     hash: null,
-     search: '?filtro=jares',
-     query: { filtro: 'jares' },
-     pathname: '/Pessoa/Lista',
-     path: '/Pessoa/Lista?filtro=jares',
-     href: '/Pessoa/Lista?filtro=jares' },
-  completa: '/Pessoa/Lista?filtro=jares',
-  path: '/Pessoa/Lista',
-  complemento: '/Pessoa/Lista?filtro=jares',
-  parametros: { filtro: 'jares' } }
-*/
-exports.Url = function(value){
+/*  /Pessoa/Lista?filtro=jares
 
+    slices: { protocol: null,
+         slashes: null,
+         auth: null,
+         host: null,
+         port: null,
+         hostname: null,
+         hash: null,
+         search: '?filtro=jares',
+         query: { filtro: 'jares' },
+         pathname: '/Pessoa/Lista',
+         path: '/Pessoa/Lista?filtro=jares',
+         href: '/Pessoa/Lista?filtro=jares' 
+    },
+    fullValue: '/Pessoa/Lista?filtro=jares'
+*/
+function UrlManager(value){
+    this.slices = url.parse(value, true);
+    this.fullValue = value;
+    //this.caminho = this.slices.pathname;    
+    //this.complemento = this.slices.path;    
+    //this.parametros = this.slices.query || { };
+    if(!this.slices.query)
+        this.slices.query = { };
+
+    this.format = function(){
+        if(struct.Text(value).has()){
+            var _returnValue = this.slices.pathname;
+            _returnValue = struct.Text(_returnValue).lower();
+
+            if(!struct.Text(_returnValue).ends('/'))
+                _returnValue += '/';
+            if(!struct.Text(_returnValue).starts('/'))
+                _returnValue = '/' + _returnValue;
+            return _returnValue.trim();         
+        }else
+            return '/';     
+    }
+}
+
+exports.Url = function(value){
+    return new UrlManager(value);
 }

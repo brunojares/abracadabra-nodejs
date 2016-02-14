@@ -38,6 +38,9 @@ function TextManager(phrase){
 		else
 			return false;
 	}
+	this.equal = function(value){
+		return this.lower(phrase).trim() == this.lower(value).trim();
+	}
 }
 
 exports.Text = function(value){
