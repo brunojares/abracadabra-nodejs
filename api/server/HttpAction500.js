@@ -2,29 +2,29 @@ var struct = require('../util/Struct');
 var HttpActionBase = require('./HttpActionBase');
 
 
-module.exports = function(config ,selection, session, error){
-	HttpActionBase.call(this, config, selection);
+module.exports = function(error){
+	HttpActionBase.call(this);
 
 	this.execute: function(){
-		session.response.status = 500;
-		var _path404 = config.server.templates + 'Error500.html';
+		this.session.response.status = 500;
+		var _path404 = this.config.server.templates + 'Error500.html';
 		file
 			.Text(_path404)
 			.load(
 				function(dataFile){
-					session.debug(functon(debug){
+					this.session.debug(functon(debug){
 						debug.template500 = dataFile;
 					});			
 					var _html = formatHtml(dataFile.content);
-					session.response.sendText(_html);
+					this.session.response.sendText(_html);
 					logDebug();
 				},
 				function(dataFile){
-					session.debug(functon(debug){
+					this.session.debug(functon(debug){
 						debug.template500 = dataFile;
 					});							
 					_html = formatHtml('<h1>Internal error</h1><h2>#error#</h2>');
-					session.response.sendText(_html);
+					this.session.response.sendText(_html);
 					logDebug();
 				}
 			)
