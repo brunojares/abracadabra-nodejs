@@ -38,6 +38,7 @@ module.exports = function(request, response){
 		response.end();		
 	}
 	response.sendStream = function(stream, filename){
+		response.status = 200;
 		response.setHeader('Content-disposition', 'attachment; filename=' + filename);
 		response.setHeader('Content-type', response.mime);	
 		stream.pipe(response);

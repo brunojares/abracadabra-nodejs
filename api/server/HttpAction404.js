@@ -3,6 +3,7 @@ var HttpActionBase = require('./HttpActionBase');
 
 module.exports = function(kind, value){
 	HttpActionBase.call(this);
+	this.name = '404 Error';
 	
 	this.execute: function(){
 		this.session.response.status = 404;
@@ -16,6 +17,7 @@ module.exports = function(kind, value){
 					});			
 					var _html = formatHtml(dataFile.content);
 					this.session.response.sendText(_html);
+					this.config.server.error(this.logAction());
 					logDebug();
 				},
 				function(dataFile){
@@ -24,6 +26,7 @@ module.exports = function(kind, value){
 					});							
 					_html = formatHtml('<h1>Resource #kind# not found</h1><h2>#value#</h2>');
 					this.session.response.sendText(_html);
+					this.config.server.error(this.logAction());
 					logDebug();
 				}
 			)

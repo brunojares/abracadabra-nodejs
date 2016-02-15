@@ -4,6 +4,7 @@ var HttpActionBase = require('./HttpActionBase');
 
 module.exports = function(path, mime, on_error){
 	HttpActionBase.call(this);
+	this.name = 'Text File';
 	this.session.response.mime = mime;
 	this.execute: function(){
 		file
@@ -15,6 +16,7 @@ module.exports = function(path, mime, on_error){
 					});			
 					var _html = formatHtml(dataFile.content);
 					this.session.response.sendText(_html);
+					this.config.server.success(this.logAction());
 					logDebug();
 				},
 				function(dataFile){

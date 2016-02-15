@@ -30,6 +30,7 @@ function ActionManager(selection){
 }
 
 module.exports = function(config){
+	this.config = config;
 	this.on = function(selection){
 		var _actionManager = new ActionManager(selection);
 		_actionManager.session = this.session;

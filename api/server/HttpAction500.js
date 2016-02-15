@@ -4,6 +4,7 @@ var HttpActionBase = require('./HttpActionBase');
 
 module.exports = function(error){
 	HttpActionBase.call(this);
+	this.name = '500 Error';
 
 	this.execute: function(){
 		this.session.response.status = 500;
@@ -17,6 +18,7 @@ module.exports = function(error){
 					});			
 					var _html = formatHtml(dataFile.content);
 					this.session.response.sendText(_html);
+					this.config.server.error(this.logAction());
 					logDebug();
 				},
 				function(dataFile){
@@ -25,6 +27,7 @@ module.exports = function(error){
 					});							
 					_html = formatHtml('<h1>Internal error</h1><h2>#error#</h2>');
 					this.session.response.sendText(_html);
+					this.config.server.error(this.logAction());
 					logDebug();
 				}
 			)
