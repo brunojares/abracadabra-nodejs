@@ -1,33 +1,37 @@
 var struct = require('../util/Struct');
+var file = require('../util/File');
 var HttpActionBase = require('./HttpActionBase');
 
 module.exports = function(kind, value){
 	HttpActionBase.call(this);
+	_this = this;
 	this.name = '404 Error';
 	
 	this.execute = function(){
-		this.session.response.status = 404;
-		var _path404 = this.config.server.templates + 'Error404.html';
+		_this.session.response.status = 404;
+		var _path404 = _this.config.server.templates + 'Error404.html';
 		file
 			.Text(_path404)
 			.load(
 				function(dataFile){
-					this.session.debug(functon(debug){
-						debug.template404 = dataFile;
+					_this.session.debug(function(obj){
+						obj.template404 = dataFile;
+						return obj;
 					});			
 					var _html = formatHtml(dataFile.content);
-					this.session.response.sendText(_html);
-					this.config.server.error(this.logAction());
-					logDebug();
+					_this.session.response.sendText(_html);
+					_this.config.server.error(_this.logAction());
+					_this.logDebug();
 				},
 				function(dataFile){
-					this.session.debug(functon(debug){
-						debug.template404 = dataFile;
-					});							
+					_this.session.debug(function(obj){
+						obj.template404 = dataFile;
+						return obj;
+					});								
 					_html = formatHtml('<h1>Resource #kind# not found</h1><h2>#value#</h2>');
-					this.session.response.sendText(_html);
-					this.config.server.error(this.logAction());
-					logDebug();
+					_this.session.response.sendText(_html);
+					_this.config.server.error(_this.logAction());
+					_this.logDebug();
 				}
 			)
 		;

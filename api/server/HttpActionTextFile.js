@@ -20,7 +20,7 @@ module.exports = function(path, mime, on_error){
 					});			
 					_this.session.response.sendText(dataFile.content);
 					_this.config.server.success(_this.logAction());
-					logDebug();
+					_this.logDebug();
 				},
 				function(dataFile){					
 					_this.session.debug(function(obj){
