@@ -4,31 +4,35 @@ var HttpActionBase = require('./HttpActionBase');
 
 module.exports = function(error){
 	HttpActionBase.call(this);
+	_this = this;
+
 	this.name = '500 Error';
 
 	this.execute = function(){
-		this.session.response.status = 500;
-		var _path404 = this.config.server.templates + 'Error500.html';
+		_this.session.response.status = 500;
+		var _path404 = _this.config.server.templates + 'Error500.html';
 		file
 			.Text(_path404)
 			.load(
 				function(dataFile){
-					this.session.debug(functon(debug){
-						debug.template500 = dataFile;
+					_this.session.debug(function(obj){
+						obj.template500 = dataFile;
+						return obj;
 					});			
 					var _html = formatHtml(dataFile.content);
-					this.session.response.sendText(_html);
-					this.config.server.error(this.logAction());
-					logDebug();
+					_this.session.response.sendText(_html);
+					_this.config.server.error(_this.logAction());
+					_this.logDebug();
 				},
 				function(dataFile){
-					this.session.debug(functon(debug){
-						debug.template500 = dataFile;
+					_this.session.debug(function(obj){
+						obj.template500 = dataFile;
+						return obj;
 					});							
 					_html = formatHtml('<h1>Internal error</h1><h2>#error#</h2>');
-					this.session.response.sendText(_html);
-					this.config.server.error(this.logAction());
-					logDebug();
+					_this.session.response.sendText(_html);
+					_this.config.server.error(_this.logAction());
+					_this.logDebug();
 				}
 			)
 		;
