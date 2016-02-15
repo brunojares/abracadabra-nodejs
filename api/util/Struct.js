@@ -104,7 +104,7 @@ function ObjectManager(obj){
 		}catch(ex){
 			if(evento_erro){
 				var _parameters = {
-					message: 'Erro ao serializar objeto para JSON',
+					message: 'JSON serialization error',
 					error: ex,
 					obj: obj					
 				}

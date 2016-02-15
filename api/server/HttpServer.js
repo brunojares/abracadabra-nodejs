@@ -19,12 +19,12 @@ module.exports = function(httpServer){
 				_config.server.success('Http started on ' + _core.port + ' port');
 				if(_config.server.debug)
 				{
-					var _debugObj = _config.application | { };
-					_debugObj.http ={
+					var _objDebug = struct.Object({
 						port: _core.port,
-						controllers: _core.controllers
-					};
-					_config.server.debug(_debugObj);
+						controllers: _core.controllers,
+						application: _config.application
+					}).json();
+					_config.server.debug(_objDebug);
 				}
 			})
 		;
