@@ -5,7 +5,7 @@ module.exports = function(kind, value){
 	HttpActionBase.call(this);
 	this.name = '404 Error';
 	
-	this.execute: function(){
+	this.execute = function(){
 		this.session.response.status = 404;
 		var _path404 = this.config.server.templates + 'Error404.html';
 		file

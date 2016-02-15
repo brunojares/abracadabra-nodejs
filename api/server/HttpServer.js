@@ -1,19 +1,19 @@
 var http = require('http');
+var struct = require('../util/Struct');
 
-var HttpSession = require('HttpSession');
+var HttpSession = require('./HttpSession');
 
 module.exports = function(httpServer){
 	var _config = httpServer.application.config;	
 	var _core = httpServer.core;
 
 	this.start = function(){
-		var 
 		http
 			.createServer(function(request, response) {
-				var _session = new HttpSession(request, response);
+				var _session = new HttpSession(_config, request, response);
 				httpServer.application.session = _session;
 				var _route = selectRoute(_session);
-				execute(_route, session);
+				execute(_route, _session);
 			})
 			.listen(_core.port, function() {
 				_config.server.success('Http started on ' + _core.port + ' port');
@@ -31,9 +31,10 @@ module.exports = function(httpServer){
 	}
 
 	function selectRoute(session){
+		var _routes = _core.routes(session);
 		var _selectedRoute = struct
-			.List(_rotas)
-			.Firts(function(item, index){
+			.List(_routes)
+			.first(function(item, index){
 				if(item.isSelected())
 					return true;
 			})

@@ -6,7 +6,7 @@ module.exports = function(error){
 	HttpActionBase.call(this);
 	this.name = '500 Error';
 
-	this.execute: function(){
+	this.execute = function(){
 		this.session.response.status = 500;
 		var _path404 = this.config.server.templates + 'Error500.html';
 		file

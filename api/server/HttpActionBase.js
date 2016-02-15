@@ -1,13 +1,15 @@
 
 module.exports = function(){
+	var _this = this;
+	
 	function logAction(){
-		return '[' + this.session.response.status + ']: ' + this.session.request.title + ' -> ' + '{' + this.session.response.mime +'} ' this.name;
+		return '[' + _this.session.response.status + ']: ' + _this.session.request.title + ' -> ' + '{' + _this.session.response.mime +'} ' + _this.name;
 	}
 	function logDebug(){
-		if(this.config.server.debug){
-			var _objDebug = this.session.debug();
+		if(_this.config.server.debug){
+			var _objDebug = _this.session.debug();
 			if(_objDebug)			
-				this.config.server.debug(_objDebug);
+				_this.config.server.debug(_objDebug);
 		}
 	}	
 }

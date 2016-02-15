@@ -4,25 +4,29 @@ var HttpActionBase = require('./HttpActionBase');
 
 module.exports = function(path, mime, on_error){
 	HttpActionBase.call(this);
+	var _this = this;
+	
 	this.name = 'Text File';
-	this.session.response.mime = mime;
-	this.execute: function(){
+		
+	this.execute = function(){
 		file
 			.Text(path)
 			.load(
 				function(dataFile){
-					this.session.debug(functon(debug){
-						debug.file = dataFile;
+					_this.session.response.mime = mime;
+					_this.session.debug(function(obj){
+						obj.file = dataFile;
+						return obj;
 					});			
-					var _html = formatHtml(dataFile.content);
-					this.session.response.sendText(_html);
-					this.config.server.success(this.logAction());
+					_this.session.response.sendText(dataFile.content);
+					_this.config.server.success(_this.logAction());
 					logDebug();
 				},
-				function(dataFile){
-					this.session.debug(functon(debug){
-						debug.file = dataFile;
-					});
+				function(dataFile){					
+					_this.session.debug(function(obj){
+						obj.file = dataFile;
+						return obj;
+					});			
 					on_error(dataFile.error);									
 				}
 			)

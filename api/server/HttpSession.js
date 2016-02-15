@@ -1,26 +1,28 @@
 var struct = require('../util/Struct');
 var uri = require('../util/Uri');
 
-module.exports = function(request, response){
+module.exports = function(config ,request, response){
+	var _this = this;
+	
 	//... Request
-	var _urlFormated = uri.Url(this.request.url).format();	
+	var _urlFormated = uri.Url(request.url).format();	
 	request.title = '{' + request.method + '}' + request.url;	
 
-	this.request.is = function(expression, method){
+	request.is = function(expression, method){
 		return function(){
 			expression = uri.Url(expression).format();
 			//...
 			var _isUrl = struct.Text(_urlFormated).starts(expression);
 			if(method)
-				return _isUrl && struct.Text(this.request.method).equal(method);
+				return _isUrl && struct.Text(request.method).equal(method);
 			else
 				return _isUrl;
 		}
 	}
-	this.request.isHome = function(method){
+	request.isHome = function(method){
 		return function(){
 			if(method)
-				return (_urlFormated == '/') && struct.Text(this.request.method).equal(method);
+				return (_urlFormated == '/') && struct.Text(request.method).equal(method);
 			else
 				return _urlFormated == '/';			
 		}
@@ -46,14 +48,14 @@ module.exports = function(request, response){
 	this.response = response;
 	//... Debug
 	var _debug;
-	this.debug = function(metodo_debug){
-		if(servidor.configuracoes.debug){
+	this.debug = function(on_set){
+		if(config.debug){
 			if(!_debug)
 				_debug = { };
-			if(metodo_debug){
-				var _incremento = metodo_debug(_debug);
-				if(_incremento)
-					_debug = _incremento;
+			if(on_set){
+				var _obj = on_set(_debug);
+				if(_obj)
+					_debug = _obj;
 			}
 		}		
 		return _debug;

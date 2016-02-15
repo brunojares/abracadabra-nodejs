@@ -2,6 +2,8 @@ var file = require('../util/File');
 var struct = require('../util/Struct');
 
 function ActionManager(selection){
+	var _this = this;
+	
 	this.Error404 = function(kind, value){
 		var HttpAction404 = require('./HttpAction404');
 		var _action = new HttpAction404(kind, value);
@@ -20,8 +22,8 @@ function ActionManager(selection){
 
 	function initAction(action){
 		action.isSelected = selection;
-		action.session = this.session;
-		action.config = this.config;
+		action.session = _this.session;
+		action.config = _this.config;
 		return action;
 	}
 	function onError500(error){
@@ -30,10 +32,12 @@ function ActionManager(selection){
 }
 
 module.exports = function(config){
+	var _this = this;
+	
 	this.config = config;
 	this.on = function(selection){
 		var _actionManager = new ActionManager(selection);
-		_actionManager.session = this.session;
+		_actionManager.session = _this.session;
 		_actionManager.config = config;
 		return _actionManager;
 	}
