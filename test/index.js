@@ -1,5 +1,12 @@
 var Server = require('../api/server/Server');
-
+/* Todo List:
+	+ HttpActionJson
+	+ Controller
+	+ Directory
+	+ Cookie
+	+ authentication and credential
+	+ WebSocker
+*/
 var _server = new Server({
 	server:{
 		templates: __dirname + '/templates/'				
@@ -21,7 +28,7 @@ _server.http(function(application){
 		controllers: __dirname + '/server/controller',
 		started: function() { },
 		auntenticate: function(session){
-			if(session.request.isHome)
+			if(session.request.isHome())
 				return true;
 			else if(session.credential.login == 'jares')
 				return true;
