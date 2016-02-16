@@ -16,6 +16,8 @@ module.exports = function(httpServer){
 				execute(_route, _session);
 			})
 			.listen(_core.port, function() {
+				if(_core.started)
+					_core.started();
 				_config.server.success('Http started on ' + _core.port + ' port');
 				if(_config.server.debug)
 				{
