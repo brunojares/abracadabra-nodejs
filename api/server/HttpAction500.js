@@ -1,4 +1,5 @@
 var struct = require('../util/Struct');
+var file = require('../util/File');
 var HttpActionBase = require('./HttpActionBase');
 
 
@@ -43,17 +44,10 @@ module.exports = function(error){
 		return struct.Text(content).replaceAll('#error#', value || '');		
 	}	
 	function formatError(){
-		if(error && (error.length > 0)){
-			var _returnValue = struct.List(error).scalar(function(item, partial){
-				return item ? '<li>' + item + '</li>' : '';
-			});
-			_returnValue = 
-				_returnValue.trim() != '' ?
-				'<ul>' + _returnValue + '</ul>' :
-				''
-			;
-			return  _returnValue;
-		}else
-			return error;		
+		return struct.Object(error)
+			.json(function(){
+				return error;
+			})
+		;		
 	}
 }

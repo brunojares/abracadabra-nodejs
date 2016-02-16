@@ -49,7 +49,7 @@ module.exports = function(config ,request, response){
 	//... Debug
 	var _debug;
 	this.debug = function(on_set){
-		if(config.debug){
+		if(config.server.debug){
 			if(!_debug)
 				_debug = { };
 			if(on_set){
