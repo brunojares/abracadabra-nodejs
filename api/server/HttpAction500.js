@@ -11,9 +11,9 @@ module.exports = function(error){
 
 	this.execute = function(){
 		_this.session.response.status = 500;
-		var _path404 = _this.config.server.templates + 'Error500.html';
+		var _path500 = _this.config.server.templates + 'Error500.html';
 		file
-			.Text(_path404)
+			.Text(_path500)
 			.load(
 				function(dataFile){
 					_this.session.debug(function(obj){

@@ -27,7 +27,7 @@ function ActionManager(selection){
 		return action;
 	}
 	function onError500(error){
-		return this.Error500(error).execute();
+		return _this.Error500(error).execute();
 	}	
 }
 

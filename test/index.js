@@ -7,7 +7,7 @@ var _server = new Server({
 		//error: function(value){ },
 		//warning: function(value){ },
 		//info: function(value){ },
-		//debug: debug: function(value){ } //undefined
+		//debug: debug: function(value){ }
 	},
 	application: {
 		appPath: __dirname,
@@ -30,9 +30,13 @@ _server.http(function(application){
 		},
 		routes: function(session){
 			return [
-				application.on(session.request.isHome()).TextFile('Index.html'),
-				application.on(session.request.is('error500')).Error500({ code: 500, message: 'Error detail'})
-				//application.on(session.request.is('person')).controller('PersonController')
+				application
+					.on(session.request.isHome())
+					.TextFile('Index.html')
+				,
+				application
+					.on(session.request.is('error500'))
+					.Error500({ code: 500, message: 'Error detail'})
 			];
 		}
 	};
