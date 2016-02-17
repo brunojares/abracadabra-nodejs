@@ -19,6 +19,11 @@ function ActionManager(selection){
 		var _action = new HttpActionTextFile(path, mime, onError500);
 		return initAction(_action);
 	}
+	this.JSON = function(object){
+		var HttpActionJSON = require('./HttpActionJSON');
+		var _action = new HttpActionJSON(object, onError500);
+		return initAction(_action);
+	}
 
 	function initAction(action){
 		action.isSelected = selection;

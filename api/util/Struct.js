@@ -102,7 +102,7 @@ function ObjectManager(obj){
 			else
 				return null;
 		}catch(ex){
-			if(evento_erro){
+			if(on_error(ex){
 				var _parameters = {
 					message: 'JSON serialization error',
 					error: ex,
