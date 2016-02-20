@@ -1,5 +1,6 @@
 var Server = require('../api/server/Server');
 /* Todo List:
+	+ Arrumar variaveis
 	+ Restfull
 	+ Controller
 	+ Directory
