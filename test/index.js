@@ -1,7 +1,6 @@
 var Server = require('../api/server/Server');
 /* Todo List:
 	+ Restfull
-	+ HttpActionJson - Testar
 	+ Controller
 	+ Directory
 	+ Cookie
