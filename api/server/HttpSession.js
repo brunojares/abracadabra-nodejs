@@ -34,7 +34,14 @@ module.exports = function(config ,request, response){
 			response.mime = 'text/html; charset=utf-8';
 		if(!response.status)
 			response.status = 200;
-		response.writeHead(response.status, {"Content-Type": response.mime});
+		response.writeHead(
+			response.status, 
+			{
+				"Content-Type": response.mime,
+				"Server": "Abracadabra NodeJS"
+				//TODO: Content-Length
+			}
+		);
 		if(text)
 			response.write(text);
 		response.end();		

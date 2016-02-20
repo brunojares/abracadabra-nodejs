@@ -43,6 +43,10 @@ _server.http(function(application){
 					.TextFile('Index.html')
 				,
 				application
+					.on(session.request.is('json'))
+					.JSON({ id: 789, name: 'Name of object' })
+				,
+				application
 					.on(session.request.is('error500'))
 					.Error500({ code: 500, message: 'Error detail'})
 			];

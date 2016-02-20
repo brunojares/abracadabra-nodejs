@@ -9,8 +9,10 @@ module.exports = function(){
 	this.logDebug = function(){
 		if(_this.config.server.debug){
 			var _objDebug = _this.session.debug();
-			if(_objDebug)
-				_this.config.server.debug(_objDebug);
+			if(_objDebug){
+				var _strJson = struct.Object(_objDebug).json();
+				_this.config.server.debug(_strJson);
+			}
 		}
 	}	
 }
