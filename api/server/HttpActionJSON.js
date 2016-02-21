@@ -29,7 +29,7 @@ module.exports = function(object, on_error){
 			_this.session.response.mime = 'application/json; charset=utf-8';
 		
 			_this.session.response.sendText(_strJson);
-			_this.config.server.success(_this.logAction());
+			_this.server.success(_this.logAction());
 			_this.logDebug();			
 		};
 	}	

@@ -11,7 +11,7 @@ module.exports = function(error){
 
 	this.execute = function(){
 		_this.session.response.status = 500;
-		var _path500 = _this.config.server.templates + 'Error500.html';
+		var _path500 = _this.server.templates + 'Error500.html';
 		file
 			.Text(_path500)
 			.load(
@@ -22,7 +22,7 @@ module.exports = function(error){
 					});			
 					var _html = formatHtml(dataFile.content);
 					_this.session.response.sendText(_html);
-					_this.config.server.error(_this.logAction());
+					_this.server.error(_this.logAction());
 					_this.logDebug();
 				},
 				function(dataFile){
@@ -32,7 +32,7 @@ module.exports = function(error){
 					});							
 					_html = formatHtml('<h1>Internal error</h1><h2>#error#</h2>');
 					_this.session.response.sendText(_html);
-					_this.config.server.error(_this.logAction());
+					_this.server.error(_this.logAction());
 					_this.logDebug();
 				}
 			)
