@@ -10,8 +10,7 @@ module.exports = function(){
 		if(_this.config.server.debug){
 			var _objDebug = _this.session.debug();
 			if(_objDebug){
-				var _strJson = struct.Object(_objDebug).json();
-				_this.config.server.debug(_strJson);
+				_this.config.server.debug(_objDebug);
 			}
 		}
 	}	

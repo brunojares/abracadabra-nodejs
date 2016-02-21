@@ -43,7 +43,6 @@ function TextManager(phrase){
 		return this.lower(phrase).trim() == this.lower(value).trim();
 	}
 	this.byteLength = function(){
-		console.log(buffer);
 		return buffer.Buffer.byteLength(phrase, 'utf8');
 	}
 }

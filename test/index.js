@@ -7,7 +7,7 @@ var _server = new Server({
 		//error: function(value){ },
 		//warning: function(value){ },
 		//info: function(value){ },
-		//debug: debug: function(value){ }
+		//debug: function(value){ }
 	},
 	application: {
 		appPath: __dirname,
@@ -44,7 +44,10 @@ _server.http(function(application){
 				,
 				application
 					.on(session.request.is('json'))
-					.JSON({ id: 789, name: 'JSON name' })
+					.JSON({ 
+						id: 789, 
+						name: 'JSON name' 
+					})
 				,
 				application
 					.on(session.request.is('error500'))

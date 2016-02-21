@@ -22,7 +22,7 @@ module.exports = function(config){
 				console.log(coolors(value, 'blue'));
 			},
 			debug: function(value){
-				console.log(coolors(value, 'white'));
+				console.log(value);
 			}
 		})
 	;

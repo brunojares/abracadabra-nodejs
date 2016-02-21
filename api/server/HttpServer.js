@@ -1,6 +1,5 @@
 var http = require('http');
 var struct = require('../util/Struct');
-
 var HttpSession = require('./HttpSession');
 
 module.exports = function(httpServer){
@@ -21,12 +20,11 @@ module.exports = function(httpServer){
 				_config.server.success('Http started on ' + _core.port + ' port');
 				if(_config.server.debug)
 				{
-					var _objDebug = struct.Object({
+					_config.server.debug({
 						port: _core.port,
 						controllers: _core.controllers,
 						application: _config.application
-					}).json();
-					_config.server.debug(_objDebug);
+					});
 				}
 			})
 		;
