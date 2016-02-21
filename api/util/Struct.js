@@ -1,3 +1,4 @@
+var buffer = require('buffer');
 /* ============ Text =============== */
 function TextManager(phrase){
 	this.replaceAll = function(search, change){
@@ -40,6 +41,10 @@ function TextManager(phrase){
 	}
 	this.equal = function(value){
 		return this.lower(phrase).trim() == this.lower(value).trim();
+	}
+	this.byteLength = function(){
+		console.log(buffer);
+		return buffer.Buffer.byteLength(phrase, 'utf8');
 	}
 }
 

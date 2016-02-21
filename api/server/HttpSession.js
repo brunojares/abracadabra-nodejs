@@ -38,8 +38,8 @@ module.exports = function(config ,request, response){
 			response.status, 
 			{
 				"Content-Type": response.mime,
-				"Server": "Abracadabra NodeJS"
-				//TODO: Content-Length
+				"Server": "Abracadabra NodeJS",
+				"Content-Length": struct.Text(text).byteLength()
 			}
 		);
 		if(text)
