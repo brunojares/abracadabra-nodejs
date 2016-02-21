@@ -1,6 +1,7 @@
 var path = require('path');
 var mime = require('mime');
 var url = require('url');
+var fs = require('fs');
 var struct = require('./Struct');
 
 /* ============ Path SO =============== */
@@ -22,8 +23,7 @@ exports.Local = function(value){
         tree: tree,        
         extension: extension,
         fullPath: value,
-        fullName: Arquivo.substring(0, fileLenfht),
-        baseName: mime.basename(value),
+        fullName: path.basename(value),
         mime: mime.lookup(value)
     };
 }

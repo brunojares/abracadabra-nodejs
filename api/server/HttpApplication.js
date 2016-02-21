@@ -2,6 +2,7 @@ var file = require('../util/File');
 var struct = require('../util/Struct');
 
 function ActionManager(selection, session, config){
+	var _this = this;
 	
 	this.Error404 = function(kind, value){
 		var HttpAction404 = require('./HttpAction404');
@@ -18,11 +19,16 @@ function ActionManager(selection, session, config){
 		var _action = new HttpActionTextFile(path, mime, onError500);
 		return initAction(_action);
 	}
+	this.StreamFile = function(path, mime){
+		var HttpActionStreamFile = require('./HttpActionStreamFile');
+		var _action = new HttpActionStreamFile(path, mime, onError500);
+		return initAction(_action);
+	}
 	this.JSON = function(object){
 		var HttpActionJSON = require('./HttpActionJSON');
 		var _action = new HttpActionJSON(object, onError500);
 		return initAction(_action);
-	}
+	}	
 
 	function initAction(action){
 		action.isSelected = selection;

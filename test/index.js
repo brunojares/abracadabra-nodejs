@@ -50,6 +50,10 @@ _server.http(function(application){
 					})
 				,
 				application
+					.on(session.request.is('image'))
+					.StreamFile('./files/ok.png')
+				,
+				application
 					.on(session.request.is('error500'))
 					.Error500({ code: 500, message: 'Error detail'})
 			];
