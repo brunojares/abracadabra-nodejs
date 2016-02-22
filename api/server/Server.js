@@ -20,9 +20,6 @@ module.exports = function(config){
 			},
 			info: function(value){
 				console.log(coolors(value, 'blue'));
-			},
-			debug: function(value){
-				console.log(value);
 			}
 		})
 	;

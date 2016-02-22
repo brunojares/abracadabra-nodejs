@@ -2,12 +2,14 @@ var Server = require('../api/server/Server');
 
 var _server = new Server({
 	server:{
-		templates: __dirname + '/templates/'				
+		templates: __dirname + '/templates/',				
 		//success: function(value){ },
 		//error: function(value){ },
 		//warning: function(value){ },
 		//info: function(value){ },
-		//debug: function(value){ }
+		debug: function(value){
+			console.log(value);
+		}
 	},
 	application: {
 		appPath: __dirname,
