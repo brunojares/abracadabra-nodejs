@@ -19,8 +19,11 @@ module.exports = function(selection, session, config){
 		var _action = new HttpActionTextFile(
 			path, 
 			mime, 
-			function(error){
-				return _this.Error500(error).execute();
+			function(code, value){
+				if(code == 500)
+					return _this.Error500(value).execute();
+				else
+					return _this.Error404('File', path).execute();
 			}	
 		);
 		return _this.initAction(_action);
@@ -30,8 +33,11 @@ module.exports = function(selection, session, config){
 		var _action = new HttpActionStreamFile(
 			path, 
 			mime, 
-			function(error){
-				return _this.Error500(error).execute();
+			function(code, value){
+				if(code == 500)
+					return _this.Error500(value).execute();
+				else
+					return _this.Error404('File', path).execute();
 			}
 		);
 		return _this.initAction(_action);

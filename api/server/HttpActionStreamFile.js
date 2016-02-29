@@ -42,8 +42,11 @@ module.exports = function(path, mime, on_error){
 							data: dataFile
 						}
 						return obj;
-					});			
-					on_error(dataFile.error);									
+					});	
+					if(dataFile.fileExists == true)		
+						on_error(500, dataFile.on_error);
+					else
+						on_error(404);									
 				}
 			)
 		;

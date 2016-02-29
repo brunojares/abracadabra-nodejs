@@ -27,7 +27,10 @@ module.exports = function(path, mime, on_error){
 						obj.file = dataFile;
 						return obj;
 					});			
-					on_error(dataFile.error);									
+					if(dataFile.fileExists)
+						on_error(500, dataFile.error);
+					else
+						on_error(404);								
 				}
 			)
 		;
